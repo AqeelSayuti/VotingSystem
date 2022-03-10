@@ -60,6 +60,69 @@
 		border-radius: 50% 50%;
 		color: #000000b3;
 	}
+
+	/* Password checker */
+	form .indicator {
+		height: 10px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin: 10px 0;
+		display: none;
+	}
+
+	form .indicator span {
+		width: 100%;
+		height: 100%;
+		background: lightgrey;
+		border-radius: 5px;
+		position: relative;
+	}
+
+	form .indicator span.medium {
+		margin: 0 3px;
+	}
+
+	form .indicator span:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		border-radius: 5px;
+	}
+
+	form .indicator span.active.weak:before {
+		background-color: #ff4757;
+	}
+
+	form .indicator span.active.medium:before {
+		background-color: orange;
+	}
+
+	form .indicator span.active.strong:before {
+		background-color: #23ad5c;
+	}
+
+	form .text {
+		font-size: 1rem;
+		font-weight: 600;
+		margin-bottom: -10px;
+		display: none;
+	}
+
+	form .text.weak {
+		color: #ff4757;
+	}
+
+	form .text.medium {
+		color: orange;
+	}
+
+	form .text.strong {
+		color: #23ad5c;
+	}
 </style>
 
 <body>
@@ -85,7 +148,13 @@
 						</div>
 						<div class="form-group">
 							<label for="password" class="control-label">Password</label>
-							<input type="password" id="password" name="password" class="form-control">
+							<input onkeyup="trigger()" type="password" id="password" name="password" class="form-control">
+							<div class="indicator">
+								<span class="weak"></span>
+								<span class="medium"></span>
+								<span class="strong"></span>
+							</div>
+							<div class="text"></div>
 						</div>
 						<div class="form-group">
 							<label for="cpassword" class="control-label">Repeat Password</label>
@@ -134,6 +203,59 @@
 			}
 		})
 	})
+</script>
+
+<script>
+	const indicator = document.querySelector(".indicator");
+	const input = document.querySelector("#password");
+	const weak = document.querySelector(".weak");
+	const medium = document.querySelector(".medium");
+	const strong = document.querySelector(".strong");
+	const text = document.querySelector(".text");
+	let regExpWeak = /[a-z]/;
+	let regExpMedium = /\d+/;
+	let regExpStrong = /.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/;
+
+	function trigger() {
+		if (input.value != "") {
+			indicator.style.display = "block";
+			indicator.style.display = "flex";
+			if (input.value.length <= 3 && (input.value.match(regExpWeak) || input.value.match(regExpMedium) || input.value.match(regExpStrong))) no = 1;
+			if (input.value.length >= 6 && (input.value.match(regExpWeak) && input.value.match(regExpMedium)) || (input.value.match(regExpMedium) && input.value.match(regExpStrong)) || (input.value.match(regExpWeak) && input.value.match(regExpStrong))) no = 2;
+			if (input.value.length >= 6 && input.value.match(regExpWeak) && input.value.match(regExpMedium) && input.value.match(regExpStrong)) no = 3;
+
+			if (no == 1) {
+				weak.classList.add("active");
+				text.style.display = "block";
+				text.textContent = "Your password is too weak";
+				text.classList.add("weak");
+			}
+			if (no == 2) {
+				medium.classList.add("active");
+				text.textContent = "Your password is medium";
+				text.classList.add("medium");
+			} else {
+				medium.classList.remove("active");
+				text.classList.remove("medium");
+
+			}
+
+			if (no == 3) {
+				medium.classList.add("active");
+				strong.classList.add("active");
+				text.textContent = "Your password is strong";
+				text.classList.add("strong");
+			} else {
+				strong.classList.remove("active");
+				text.classList.remove("strong");
+
+			}
+
+		} else {
+			indicator.style.display = "none";
+			text.style.display = "none";
+		}
+	}
 </script>
 
 </html>
