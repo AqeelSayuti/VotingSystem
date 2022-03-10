@@ -15,9 +15,6 @@ if(isset($_SESSION['login_id']))
 header("location:index.php?page=home");
 ?>
 
-<!-- Recaptcha -->
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
 </head>
 <style>
 	body{
@@ -73,11 +70,15 @@ header("location:index.php?page=home");
   			</div>
   		</div>
   		<div id="login-right">
-  			<div class="card col-md-8">
-				  <h1>Login</h1>
+              <div class="card col-md-8">
+                  <H1>Register Form</H1>
   				<div class="card-body">
   					<form id="login-form" >
   						<div class="form-group">
+  							<label for="name" class="control-label">Name</label>
+  							<input type="text" id="name" name="name" class="form-control">
+  						</div>
+                          <div class="form-group">
   							<label for="username" class="control-label">Username</label>
   							<input type="text" id="username" name="username" class="form-control">
   						</div>
@@ -85,15 +86,14 @@ header("location:index.php?page=home");
   							<label for="password" class="control-label">Password</label>
   							<input type="password" id="password" name="password" class="form-control">				
   						</div>
-		<!-- recaptcha -->
-		<div class="form-group">
-		<div class="g-recaptcha" data-sitekey="6LfnycQeAAAAALKy7j2S5Pb8cjTr7Shhcmw0WZPp"></div>
-		</div>
-		
-		<div class="form-group">
-			<button class="btn btn-wave btn-primary">Login</button>
-			<a href="register.php" class="btn btn-wave btn-secondary" > Register </a>
-		</div>
+                          <div class="form-group">
+  							<label for="cpassword" class="control-label">Repeat Password</label>
+  							<input type="password" id="cpassword" name="cpassword" class="form-control">				
+  						</div>
+                        <div class="form-group">
+			                <button class="btn btn-wave btn-primary">Register</button>
+			                <a href="login.php" class="btn btn-wave btn-secondary" > Back to login </a>
+		                </div>
   					</form>
   				</div>
   			</div>
