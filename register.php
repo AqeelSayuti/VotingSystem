@@ -71,7 +71,7 @@ header("location:index.php?page=home");
   		</div>
   		<div id="login-right">
               <div class="card col-md-8">
-                  <H1>Register Form</H1>
+                  <H1>Register Form |</H1>
   				<div class="card-body">
   					<form id="login-form" >
   						<div class="form-group">
