@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 18, 2020 at 10:03 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.33
+-- Generation Time: Aug 15, 2022 at 05:37 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,9 +37,7 @@ CREATE TABLE `category_list` (
 --
 
 INSERT INTO `category_list` (`id`, `category`) VALUES
-(1, 'President'),
-(3, 'Vice Presindent'),
-(4, 'Officer');
+(3, 'Candidates');
 
 -- --------------------------------------------------------
 
@@ -60,10 +58,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `type`) VALUES
-(1, 'Administrator', 'admin', 'admin123', 1),
-(2, 'John Smith', 'jsmith', 'admin123', 1),
-(3, 'Voter 2', 'voter2', 'voter2', 2),
-(4, 'Voter 1', 'voter1', 'voter1', 2);
+(1, 'Administrator', 'admin', '1', 1),
+(6, 'voter', 'voter', '1', 2),
+(21, 'Aida', 'Aida', 'Aida123_', 2);
 
 -- --------------------------------------------------------
 
@@ -84,18 +81,16 @@ CREATE TABLE `votes` (
 --
 
 INSERT INTO `votes` (`id`, `voting_id`, `category_id`, `voting_opt_id`, `user_id`) VALUES
-(1, 1, 1, 1, 3),
-(2, 1, 3, 5, 3),
-(3, 1, 4, 6, 3),
-(4, 1, 4, 7, 3),
-(5, 1, 4, 8, 3),
-(6, 1, 4, 9, 3),
-(7, 1, 1, 3, 4),
-(8, 1, 3, 12, 4),
-(9, 1, 4, 6, 4),
-(10, 1, 4, 8, 4),
-(11, 1, 4, 10, 4),
-(12, 1, 4, 11, 4);
+(74, 1, 3, 30, 6),
+(75, 1, 3, 33, 6),
+(76, 1, 3, 34, 6),
+(77, 1, 3, 36, 6),
+(78, 1, 3, 37, 6),
+(79, 1, 3, 30, 21),
+(80, 1, 3, 31, 21),
+(81, 1, 3, 32, 21),
+(82, 1, 3, 33, 21),
+(83, 1, 3, 34, 21);
 
 -- --------------------------------------------------------
 
@@ -116,8 +111,8 @@ CREATE TABLE `voting_cat_settings` (
 
 INSERT INTO `voting_cat_settings` (`id`, `voting_id`, `category_id`, `max_selection`) VALUES
 (1, 1, 1, 1),
-(2, 1, 3, 1),
-(3, 1, 4, 4);
+(2, 1, 3, 5),
+(3, 1, 4, 2);
 
 -- --------------------------------------------------------
 
@@ -137,8 +132,7 @@ CREATE TABLE `voting_list` (
 --
 
 INSERT INTO `voting_list` (`id`, `title`, `description`, `is_default`) VALUES
-(1, 'Sample Voting', 'Sample only', 1),
-(3, 'Test Voting', 'Test Only', 0);
+(1, 'KMK VOTING', 'VOTE FOR YOUR MPPS!', 1);
 
 -- --------------------------------------------------------
 
@@ -159,16 +153,26 @@ CREATE TABLE `voting_opt` (
 --
 
 INSERT INTO `voting_opt` (`id`, `voting_id`, `category_id`, `image_path`, `opt_txt`) VALUES
-(1, 1, 1, '1600398180_no-image-available.png', 'James Smith'),
-(3, 1, 1, '1600415460_avatar2.png', 'James Wilson'),
-(5, 1, 3, '1600415520_avatar.jpg', 'George Walker'),
-(6, 1, 4, '1600400340_no-image-available.png', 'Cadidate 1'),
-(7, 1, 4, '1600400340_no-image-available.png', 'Cadidate 2'),
-(8, 1, 4, '1600400340_no-image-available.png', 'Cadidate 3'),
-(9, 1, 4, '1600400520_no-image-available.png', 'Cadidate  4'),
-(10, 1, 4, '1600400640_no-image-available.png', 'Cadidate 5'),
-(11, 1, 4, '1600400400_no-image-available.png', 'Cadidate 6'),
-(12, 1, 3, '1600415520_no-image-available.png', 'Claire Blake');
+(6, 1, 4, '1646220900_1646220900_1646220900_1646220900_1600418640_avatar.jpg', 'Samad'),
+(7, 1, 4, '1646220900_1646220900_1646220900_1646220900_1646220900_1600418640_avatar.jpg', 'Luqman'),
+(8, 1, 4, '1646220900_1646220900_1646220900_1646220900_1646220900_1646220900_1600418640_avatar.jpg', 'Faiz'),
+(15, 1, 6, '1646671680_1646220900_1646220900_1646220900_1646220900_1646220900_1646220900_1600418640_avatar.jpg', 'Ali'),
+(16, 1, 7, '1646671740_1646220900_1646220900_1646220900_1646220900_1646220900_1646220900_1600418640_avatar.jpg', 'a'),
+(17, 1, 6, '1646671740_1646220900_1646220900_1646220900_1646220900_1646220900_1646220900_1600418640_avatar.jpg', 'Ahmad'),
+(19, 1, 8, '1646671800_1646220900_1646220900_1646220900_1646220900_1646220900_1646220900_1600418640_avatar.jpg', 'Aiman'),
+(20, 1, 8, '1646671800_1646671560_1646220900_1646220900_1646220900_1646220900_1600418640_avatar.jpg', 'Mail'),
+(21, 1, 9, '1646723760_1646671680_1646220900_1646220900_1646220900_1646220900_1646220900_1646220900_1600418640_avatar.jpg', 'test'),
+(30, 1, 3, '1660546200_1600418640_avatar.jpg', 'Candidate 1'),
+(31, 1, 3, '1660546200_1646220900_1646220900_1646220900_1646220900_1646220900_1600418640_avatar.jpg', 'Candidate 2'),
+(32, 1, 3, '1660546260_1646220900_1646220900_1646220900_1646220900_1646220900_1646220900_1600418640_avatar.jpg', 'Candidate 3'),
+(33, 1, 3, '1660546260_1646220900_1646220900_1646220900_1646220900_1646220900_1646220900_1600418640_avatar.jpg', 'Candidate 4'),
+(34, 1, 3, '1660546260_1646671740_1646220900_1646220900_1646220900_1646220900_1646220900_1646220900_1600418640_avatar.jpg', 'Candidate 5'),
+(35, 1, 3, '1660546260_1646220900_1646220900_1646220900_1646220900_1646220900_1646220900_1600418640_avatar.jpg', 'Candidate 6'),
+(36, 1, 3, '1660546260_1646671680_1646220900_1646220900_1646220900_1646220900_1646220900_1646220900_1600418640_avatar.jpg', 'Candidate 7'),
+(37, 1, 3, '1660546260_1646220900_1646220900_1646220900_1646220900_1646220900_1646220900_1600418640_avatar.jpg', 'Candidate 8'),
+(38, 1, 3, '1660546320_1646220900_1646220900_1646220900_1646220900_1646220900_1600418640_avatar.jpg', 'Candidate 9'),
+(39, 1, 15, '1660546440_1646671680_1646220900_1646220900_1646220900_1646220900_1646220900_1646220900_1600418640_avatar.jpg', 'hady'),
+(40, 1, 3, '1660546500_1646671740_1646220900_1646220900_1646220900_1646220900_1646220900_1646220900_1600418640_avatar.jpg', 'Candidate 10');
 
 --
 -- Indexes for dumped tables
@@ -218,19 +222,19 @@ ALTER TABLE `voting_opt`
 -- AUTO_INCREMENT for table `category_list`
 --
 ALTER TABLE `category_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `votes`
 --
 ALTER TABLE `votes`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT for table `voting_cat_settings`
@@ -242,13 +246,13 @@ ALTER TABLE `voting_cat_settings`
 -- AUTO_INCREMENT for table `voting_list`
 --
 ALTER TABLE `voting_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `voting_opt`
 --
 ALTER TABLE `voting_opt`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
